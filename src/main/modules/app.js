@@ -1,4 +1,4 @@
-define(['angular', 'about/about', 'contact/contact', 'navbar/navbar' ], function (angular) {
+define(['angular', 'angular-route', 'about/about', 'contact/contact', 'navbar/navbar' ], function (angular) {
 	"use strict";
 	var app = angular.module("app", ["ngRoute", "about", "contact", "navbar", "pascalprecht.translate"]);
 
