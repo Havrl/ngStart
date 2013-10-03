@@ -1,7 +1,7 @@
 define(function () {
 	"use strict";
 
-	var ContactController = function($scope, contactService) {
+	var ContactController = function($scope, $filter, contactService) {
 		$scope.author = "Marco Rinck";
 		$scope.email = "marco.rinck@googlemail.com";
 		$scope.homepage = "https://github.com/marcorinck/ngStart";
@@ -13,12 +13,14 @@ define(function () {
 
 		$scope.filteredContacts = [];
 
+		//Watch searchText value and pass it and the contacts to ContactsFilter
+		//Doing this instead of adding the filter to ng-repeat allows it to only be run once (rather than twice)
 		$scope.$watch("searchText", function(filterText){
 			filterContacts(filterText);
 		});
 
 		function filterContacts(filterText) {
-			$scope.filteredContacts = $scope.contacts; //contactFilter($scope.contacts, filterText);
+			$scope.filteredContacts = $filter('ContactsFilter')($scope.contacts, filterText);
 		}
 
 		$scope.messageChanged = function() {
@@ -31,7 +33,5 @@ define(function () {
 		};
 	};
 
-	ContactController.$inject = ["$scope", 'ContactService'];
-
-	return ContactController;
+	return ["$scope", '$filter', 'ContactService', ContactController];
 });

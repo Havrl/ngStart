@@ -5,7 +5,8 @@ define(['angular', 'contact/ContactController', 'contact/ContactService', 'conta
 
 	contact.service("ContactService", ContactService);
 
-	contact.config(["$routeProvider", function($routeProvider) {
+	contact.config(["$routeProvider", "$filterProvider", function($routeProvider, $filterProvider) {
+		$filterProvider.register('ContactsFilter', ContactsFilter);
 		$routeProvider.when('/contact/', {
 			templateUrl: "modules/" + 'contact/contact.html',
 			controller: ContactController
