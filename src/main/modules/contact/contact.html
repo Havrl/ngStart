@@ -2,6 +2,28 @@
 	<h1><translate>Contact Page</translate></h1>
 </div>
 
+<div class="row">
+	<div class="input-group ">
+		<input type="text" class="form-control" data-ng-model="searchText" placeholder="Filter Contacts">
+	</div>
+
+	<table class="table">
+		<thead>
+		<tr>
+			<th>Id</th>
+			<th>Name</th>
+			<th>Email</th>
+		</tr>
+		</thead>
+		<tbody>
+		<tr data-ng-repeat="contact in filteredContacts">
+			<td>{{contact.id}}</td>
+			<td>{{contact.name}}</td>
+			<td>{{contact.email}}</td>
+		</tr>
+		</tbody>
+	</table>
+</div>
 
 <div class="row">
 	<div class="span8 center alert alert-success" ng-show="sent">
